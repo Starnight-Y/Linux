@@ -12,17 +12,17 @@
 //全局变量
 int stu_Count;                                 //学生数量 
 int package_Count;                             //快递数量 
-int user_num;
-int cou_Count;
+int user_num;                                  //账号 
+int cou_Count;                                 //快递员数量 
 //主函数
 int main(){
     int temp,choice,t=-1;
-    system("./judgeS.sh");
-    system("./judgeC.sh");
-    system("./judgeP.sh");
-    system("./clear.sh");
-    welcome();                                  //欢迎界面
-    choice=user_type();                         //用户选择界面
+    system("./judgeS.sh");                     //如果当前没有student.txt文件，则创建一个 
+    system("./judgeC.sh");                     //如果当前没有courier.txt文件，则创建一个
+    system("./judgeP.sh");                     //如果当前没有package.txt文件，则创建一个
+    system("./clear.sh");                      //清屏 
+    welcome();                                 //欢迎界面
+    choice=user_type();                        //用户选择界面
     if(choice!=0){
         Load_package_information((char*)"package.txt");
         Load_student_information((char*)"student.txt");
@@ -36,7 +36,7 @@ int main(){
                     temp=land(choice); 
                 }
                 else if(t==0){
-                    exit_system();
+                    exit_system();              //退出系统 
                 }
                 else if(t==2){
                     temp=land(choice);          //学生登录 
@@ -52,7 +52,7 @@ int main(){
                     temp=land(choice); 
                 }
                 else if(t==0){
-                    exit_system();
+                    exit_system();              //退出系统 
                 }
                 else if(t==2){
                     temp=land(choice);          //快递员登录 
@@ -178,6 +178,7 @@ int land(int user_type){
     }
     return temp;
 } 
+//linux中读取单个字符（用不到） 
 int getch(){
     struct termios oldt,newt;
     int ch;
