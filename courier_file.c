@@ -16,10 +16,10 @@ int cou_land(){
         printf("\n请输入您的用户名：");
         scanf("%d",&user_num);
         printf("\n请输入您的密码：");
-        system("stty -echo");
+        system("stty -echo");                                                                     //密码加密，看不到输入的密码 
         pwd=getchar();
         scanf("%s",&pwd);
-        system("stty echo");
+        system("stty echo");                                                                      //密码加密，看不到输入的密码 
         if((temp=cou_search(user_num))==NO_FOUND){
             printf("\n用户名错误！");
         }
@@ -110,10 +110,10 @@ void courier(){
                     printf("提交失败！"); 
                 }
                 break;
-            case 0:
-                save_courier_information((char*)"courier.txt");
-                save_package_information((char*)"package.txt");
-                exit_system();
+            case 0:                                                                       //保存数据并退出系统 
+                save_courier_information((char*)"courier.txt");                           //保存数据到courier.txt 
+                save_package_information((char*)"package.txt");                           //保存数据到package.txt 
+                exit_system();                                                            //退出系统 
                 break;
             default:
                 printf("\n对不起，您选择错误！\n");
@@ -129,7 +129,7 @@ void courier(){
 void cou_modify(){
     int temp;
     int choice;
-    temp=cou_search(user_num);
+    temp=cou_search(user_num);                                                             //查找到当前的快递员账号赋给temp 
     system("./clear.sh");
     do{
         printf("\n\n");
