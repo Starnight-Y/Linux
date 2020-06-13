@@ -18,10 +18,10 @@ int admin_land(){
         printf("\n请输入管理员用户名：");
         scanf("%s",user_name);
         printf("\n请输入管理员密码:");
-        system("stty -echo");
+        system("stty -echo");                                                                              //密码加密，看不到输入的密码 
         pwd=getchar();
         scanf("%s",&pwd);
-        system("stty echo");
+        system("stty echo");                                                                              //密码加密，看不到输入的密码 
         if((strcmp(user_name,ADMIN_PASSWARD)==0 && strcmp(&pwd,ADMIN_PASSWARD)==0)){
             return YES;
         }
@@ -66,10 +66,10 @@ void administrator(){
             case 2:
                 manage_package();
                 break;
-            case 0:
-                save_package_information((char*)"package.txt");
-                save_student_information((char*)"student.txt");
-                exit_system();
+            case 0:                                                                                          //保存数据并退出系统 
+                save_package_information((char*)"package.txt");                                              //保存数据到package.txt文件 
+                save_student_information((char*)"student.txt");                                              //保存数据到student.txt文件 
+                exit_system();                                                                               //退出系统 
                 break;
             default:
                 printf("\n对不起，您选择错误！\n");
