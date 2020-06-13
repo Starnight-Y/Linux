@@ -17,10 +17,10 @@ int stu_land(){
         printf("\n请输入您的用户名：");
         scanf("%d",&user_num);
         printf("\n请输入您的密码：");
-        system("stty -echo");
+        system("stty -echo");                                                          //密码加密，看不到输入的密码 
         pwd=getchar();
         scanf("%s",&pwd);
-        system("stty echo");
+        system("stty echo");                                                           //密码加密，看不到输入的密码
         if((temp=stu_search(user_num))==NO_FOUND){
             printf("\n用户名错误！");
         }
@@ -65,7 +65,7 @@ void student(){
         choice=stu_menu();
         system("./clear.sh");
         switch(choice){
-            case 1:
+            case 1:                                                                  //查询学生个人信息 
                 temp=stu_search(user_num);
                 printf("账号：");
                 printf("%d\n",s[temp].num);
@@ -76,11 +76,11 @@ void student(){
                 printf("登录密码：");
                 printf("%s\n",s[temp].password);
                 break;
-            case 2:
+            case 2:                                                                  //修改学生个人信息 
                 stu_modify();
                 system("./clear.sh");
                 continue;
-            case 3:
+            case 3:                                                                  //查询与学生关联的快递信息 
                 for(int i=0;i<package_Count;i++){
                     if(strcmp(pac[i].stu_phone,s[temp].phone)==0){
                         printf("快递单号：%d\t",pac[i].num);
@@ -97,7 +97,7 @@ void student(){
                      printf("no result!");
                  }
                 break;
-            case 4:
+            case 4:                                                                   //取件 
                 printf("输入您想要取件的快递单号：");
                 scanf("%d",&pacnum);
                 for(int i=0;i<package_Count;i++){
@@ -109,7 +109,7 @@ void student(){
                         if((strcmp(pac[i].location,&location[1])==0)&&(strcmp(pac[i].code,&code[1])==0)){
                             printf("取件成功！");
                             p=1;
-                            strcpy(pac[i].state,"finish");
+                            strcpy(pac[i].state,"finish");                             //快递状态改为"finish"已取件状态 
                         }
                     }
                 }
@@ -117,10 +117,10 @@ void student(){
                         printf("failure!");
                     }
                 break;
-            case 0:
-                save_student_information((char*)"student.txt");
-                save_package_information((char*)"package.txt");
-                exit_system();
+            case 0:                                                                    //保存数据并退出系统 
+                save_student_information((char*)"student.txt");                        //保存学生数据到student.txt 
+                save_package_information((char*)"package.txt");                        //保存快递数据到package.txt 
+                exit_system();                                                         //退出系统 
                 break;
             default:
                 printf("\n对不起，您选择错误！\n");
@@ -154,19 +154,19 @@ void stu_modify(){
         printf("请选择：");
         scanf("%d",&choice);
         switch(choice){
-            case 1:
+            case 1:                                                                   //修改姓名 
                 printf("请输入新姓名：");
                 scanf("%s",s[temp].name);
                 break;
-            case 2:
+            case 2:                                                                   //修改手机
                 printf("请输入新手机号码：");
                 scanf("%s",s[temp].phone);
                 break;
-            case 3:
+            case 3:                                                                   //修改密码 
                 printf("请输入新密码：");
                 scanf("%s",s[temp].password);
                 break;
-            case 0:
+            case 0:                                                                   //返回学生界面  
                 return;
             default:
                 printf("\n无效选项！");
